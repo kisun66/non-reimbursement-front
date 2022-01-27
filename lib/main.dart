@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'kakao_map.dart' as kakaoMap;
+import 'widget/kakao_map.dart' as kakaoMap;
 
 void main() {
   runApp(
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('비급여수가')
+        title: Text('비급여수가'),
       ),
       body: kakaoMap.KakaoMap(),
       bottomNavigationBar: BottomNavigationBar(
