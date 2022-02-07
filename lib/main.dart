@@ -1,40 +1,49 @@
 import 'package:flutter/material.dart';
-import 'widget/kakao_map.dart' as kakaoMap;
+import 'widget/findAddress.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: MyApp()
-    )
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '비급여수가',
+      home: MyHomePage(title: '비급여수가'),
+    );
   }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Widget> widgets = [FindAddress(), FindAddress()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('비급여수가'),
+        title: Text(widget.title),
       ),
-      body: kakaoMap.KakaoMap(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.ac_unit), label: 'Main'),
-          BottomNavigationBarItem(icon: Icon(Icons.ac_unit), label: 'Main2')
-        ],
+      body: Container(
+        alignment: Alignment.center,
+        child: GridView.count( // Grid 설정
+          crossAxisCount: 2,
+          children: List.generate(widgets.length, (index) {
+            return Center(
+              child: widgets[index]
+            );
+          }),
+        ),
       ),
     );
   }
