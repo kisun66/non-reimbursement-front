@@ -145,6 +145,7 @@ getHospital(String latitude, String longitude) async {
   const url = 'http://apis.data.go.kr/B551182/hospInfoService1/getHospBasisList1?';
   var xPos = longitude;
   var yPos = latitude;
+  var result = [];
 
   try {
     http.Response response = await http.get(
@@ -155,12 +156,12 @@ getHospital(String latitude, String longitude) async {
     myTransformer.parse(XmlData.toString());
     var json = jsonDecode(myTransformer.toParker());
 
-    var result = [];
     json['response']['body']['items']['item'].forEach((element) => result.add(element));
 
     return result;
   } catch (e) {
     print('url 정보 불러오기 실패');
+    return result;
   }
 }
 
