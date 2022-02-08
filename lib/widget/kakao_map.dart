@@ -5,6 +5,8 @@ import './loading.dart' as loading;
 import 'package:xml2json/xml2json.dart';
 import 'dart:convert';
 import 'package:xml/xml.dart';
+import '../util/common_util.dart' as commonUtil;
+import 'hospitalDetail.dart';
 
 const String kakaoMapKey = '53a136cf20bd4263c00b68fbf310d71f';
 
@@ -85,7 +87,28 @@ class _KakaoMapState extends State<KakaoMap> {
                             trailing: TextButton(
                               child: Text('상세보기', style: TextStyle(color: Colors.green, fontSize: 15)),
                               onPressed: (){
+                                print(snapshot.data['resultList'][index]);
+                                var sidoCd = '${commonUtil.getSidoCode(snapshot.data['resultList'][index]['addr'])}0000';
+                                var yadmNm = snapshot.data['resultList'][index]['yadmNm'];
+                                // getHospitalDetail(sidoCd, yadmNm);
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation, secondaryAnimation) => HospitalDetail(sidoCd: sidoCd, yadmNm: yadmNm),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      const begin = Offset(0.0, 1.0);
+                                      const end = Offset.zero;
+                                      const curve = Curves.ease;
 
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
+                                  )
+                                );
                               },
                             ),
                             title: InkWell(
