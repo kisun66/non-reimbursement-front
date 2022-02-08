@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 var commonColor = Colors.blueAccent;
 var commonBackgroundColor = Colors.white;
@@ -54,9 +55,21 @@ spinningCircle(String message){
               size: 50,
             ),
             SizedBox(height: 30),
-            Text(
-              message,
-              style: TextStyle(fontSize: 15, color: commonColor),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  message,
+                  style: TextStyle(fontSize: 17, color: commonColor),
+                ),
+                DefaultTextStyle(
+                  style: TextStyle(fontSize: 17, color: commonColor),
+                  child: AnimatedTextKit(
+                    animatedTexts: [WavyAnimatedText('.....')],
+                    isRepeatingAnimation: true,
+                  ),
+                )
+              ],
             )
           ],
         )
