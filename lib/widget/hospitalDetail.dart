@@ -17,7 +17,9 @@ class HospitalDetail extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot){
         print(snapshot.data);
         if (snapshot.hasData == false) {
-          return loading.spinningCircle('비급여 정보를 불러오고 있습니다');
+          return loading.Loading(
+            message: '비급여 정보를 불러오고 있습니다',
+          );
         } else if (snapshot.hasError) {
           return Text('Error');
         } else {

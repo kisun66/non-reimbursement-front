@@ -27,7 +27,9 @@ class _findAdressState extends State<FindAddress> {
           onPressed: () async {
             Kpostal kPostal = await Navigator.push(context, MaterialPageRoute(builder: (_) => KpostalView(
                 kakaoKey: '53a136cf20bd4263c00b68fbf310d71f',
-                onLoading: loading.spinningCircle('주소창을 불러오고있습니다'),
+                onLoading: loading.Loading(
+                  message: '주소창을 불러오고있습니다',
+                )
             )));
             if(kPostal.postCode.isNotEmpty){
               try{

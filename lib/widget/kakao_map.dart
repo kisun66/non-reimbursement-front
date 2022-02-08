@@ -31,7 +31,9 @@ class _KakaoMapState extends State<KakaoMap> {
         future: getHospitalMarker(widget.kakaoLatitude, widget.kakaoLongitude),
         builder: (BuildContext context, AsyncSnapshot snapshot){
           if(snapshot.hasData == false) { // 로딩 시 표출할 부분
-            return loading.spinningCircle('지도를 불러오고 있습니다');
+            return loading.Loading(
+              message: '지도를 불러오고 있습니다',
+            );
           } else if (snapshot.hasError) { // 에러 발생시 표출할 부분
             return Text('Error');
           } else { // 성공 시 표출할 부분

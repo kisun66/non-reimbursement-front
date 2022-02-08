@@ -2,77 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-var commonColor = Colors.blueAccent;
-var commonBackgroundColor = Colors.white;
+const commonColor = Colors.blueAccent;
+const commonBackgroundColor = Colors.white;
 
-/// 원형 로딩창
-var circularLoading = Container(
-  color: commonBackgroundColor,
-  child: Center(
-    child: CircularProgressIndicator(backgroundColor: commonColor),
-  )
-);
+class Loading extends StatelessWidget {
+  final String? message;
 
-/// HourGlass
-var hourGlass = Container(
-  color: commonBackgroundColor,
-  child: SpinKitHourGlass(color: commonColor)
-);
+  const Loading({
+    Key? key,
+    this.message
+  }) : super(key: key);
 
-/// CubeGrid
-var cubeGrid = Container(
-  color: commonBackgroundColor,
-  child: SpinKitCubeGrid(
-    color: commonColor,
-    size: 50,
-  )
-);
-
-/// Wave
-var wave = Container(
-  color: commonBackgroundColor,
-  child: SpinKitWave(
-    color: commonColor,
-    size: 50,
-  )
-);
-
-/// SpinningCircle
-spinningCircle(String message){
-  if(message.isEmpty){
-    message = '로딩중입니다...';
-  }
-
-  return Material(
-    type: MaterialType.transparency,
-    child: Container(
-        color: commonBackgroundColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SpinKitSpinningCircle(
-              color: commonColor,
-              size: 50,
-            ),
-            SizedBox(height: 30),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  message,
-                  style: TextStyle(fontSize: 17, color: commonColor),
-                ),
-                DefaultTextStyle(
-                  style: TextStyle(fontSize: 17, color: commonColor),
-                  child: AnimatedTextKit(
-                    animatedTexts: [WavyAnimatedText('.....')],
-                    isRepeatingAnimation: true,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Container(
+          color: commonBackgroundColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SpinKitSpinningCircle(
+                color: commonColor,
+                size: 50,
+              ),
+              SizedBox(height: 30),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    message ?? '로딩중입니다',
+                    style: TextStyle(fontSize: 17, color: commonColor),
                   ),
-                )
-              ],
-            )
-          ],
-        )
-    ),
-  );
+                  DefaultTextStyle(
+                    style: TextStyle(fontSize: 17, color: commonColor),
+                    child: AnimatedTextKit(
+                      animatedTexts: [WavyAnimatedText('.....')],
+                      isRepeatingAnimation: true,
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+      )
+    );
+  }
 }

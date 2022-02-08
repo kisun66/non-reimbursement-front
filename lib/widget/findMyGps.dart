@@ -28,7 +28,9 @@ class _FindMyGpsState extends State<FindMyGps> {
                       future: getCurrentLocation(),
                       builder: (BuildContext context, AsyncSnapshot snapshot){
                         if(snapshot.hasData == false) {
-                          return loading.spinningCircle('GPS정보를 수신중입니다');
+                          return loading.Loading(
+                            message: 'GPS정보를 수신중입니다',
+                          );
                         } else if (snapshot.hasError) {
                           return Text('Error');
                         } else {
