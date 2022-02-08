@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widget/findAddress.dart';
+import 'widget/findMyGps.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Widget> widgets = [FindAddress(), FindAddress()];
+  final List<Widget> widgets = [FindAddress(), FindMyGps()];
 
   @override
   Widget build(BuildContext context) {

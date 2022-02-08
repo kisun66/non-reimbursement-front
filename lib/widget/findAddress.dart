@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kpostal/kpostal.dart';
 import 'kakao_map.dart' as kakaoMap;
+import './loading.dart' as loading;
 
 class FindAddress extends StatefulWidget {
   const FindAddress({Key? key}) : super(key: key);
@@ -19,10 +20,11 @@ class _findAdressState extends State<FindAddress> {
   Widget build(BuildContext context) {
     return IconButton(
       padding: EdgeInsets.all(0.0), // 기본 padding 제거
-      icon: Icon(Icons.gps_fixed, size: 50), // 50 이상으로 설정 시 오른쪽으로 넘어감
+      icon: Icon(Icons.book, size: 50), // 50 이상으로 설정 시 오른쪽으로 넘어감
       onPressed: () async {
         Kpostal kPostal = await Navigator.push(context, MaterialPageRoute(builder: (_) => KpostalView(
-            kakaoKey: '53a136cf20bd4263c00b68fbf310d71f'
+            kakaoKey: '53a136cf20bd4263c00b68fbf310d71f',
+            onLoading: loading.spinningCircle('주소창을 불러오고있습니다...'),
         )));
         if(kPostal.postCode.isNotEmpty){
           try{

@@ -37,10 +37,29 @@ var wave = Container(
 );
 
 /// SpinningCircle
-var spinningCircle = Container(
-  color: commonBackgroundColor,
-  child: SpinKitSpinningCircle(
-    color: commonColor,
-    size: 50,
-  )
-);
+spinningCircle(String message){
+  if(message.isEmpty){
+    message = '로딩중입니다...';
+  }
+
+  return Material(
+    type: MaterialType.transparency,
+    child: Container(
+        color: commonBackgroundColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitSpinningCircle(
+              color: commonColor,
+              size: 50,
+            ),
+            SizedBox(height: 30),
+            Text(
+              message,
+              style: TextStyle(fontSize: 15, color: commonColor),
+            )
+          ],
+        )
+    ),
+  );
+}
