@@ -96,7 +96,7 @@ class _KakaoMapState extends State<KakaoMap> {
                                 Navigator.push(
                                   context,
                                   PageRouteBuilder(
-                                    pageBuilder: (context, animation, secondaryAnimation) => HospitalDetail(sidoCd: sidoCd, yadmNm: yadmNm),
+                                    pageBuilder: (context, animation, secondaryAnimation) => HospitalDetail(hospitalData : snapshot.data['resultList'][index]),
                                     transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                       const begin = Offset(0.0, 1.0);
                                       const end = Offset.zero;
