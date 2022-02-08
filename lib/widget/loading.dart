@@ -41,7 +41,7 @@ class Loading extends StatelessWidget {
                     style: TextStyle(fontSize: 17, color: commonColor),
                     child: AnimatedTextKit(
                       animatedTexts: [WavyAnimatedText('.....')],
-                      isRepeatingAnimation: true,
+                      repeatForever: true,
                     ),
                   )
                 ],
