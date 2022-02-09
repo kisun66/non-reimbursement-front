@@ -139,51 +139,51 @@ class _KakaoMapState extends State<KakaoMap> {
 
 /// 병원 목록 호출 API
 getHospital(String latitude, String longitude) async {
-  XmlDocument? XmlData;
-  const serviceKey = 'HkDNhACAjb48Slc6oza%2Fklg%2FYmuIq%2FlHal3RgZDe3kc%2FpfhCWqYDJxC9XjMQ0tCPJdyx%2FRT%2FfgPImhlnn5G19Q%3D%3D';
-  const pageNo = '1';
-  const numOfRows = '100';
-  const radius = '500';
-  const url = 'http://apis.data.go.kr/B551182/hospInfoService1/getHospBasisList1?';
-  var xPos = longitude;
-  var yPos = latitude;
-  var result = [];
+  XmlDocument? _XmlData;
+  const _serviceKey = 'HkDNhACAjb48Slc6oza%2Fklg%2FYmuIq%2FlHal3RgZDe3kc%2FpfhCWqYDJxC9XjMQ0tCPJdyx%2FRT%2FfgPImhlnn5G19Q%3D%3D';
+  const _pageNo = '1';
+  const _numOfRows = '100';
+  const _radius = '500';
+  const _url = 'http://apis.data.go.kr/B551182/hospInfoService1/getHospBasisList1?';
+  var _xPos = longitude;
+  var _yPos = latitude;
+  var _result = [];
 
   try {
     http.Response response = await http.get(
-        Uri.parse('${url}serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&radius=${radius}&xPos=${xPos}&yPos=${yPos}')
+        Uri.parse('${_url}serviceKey=${_serviceKey}&pageNo=${_pageNo}&numOfRows=${_numOfRows}&radius=${_radius}&xPos=${_xPos}&yPos=${_yPos}')
     );
-    XmlData = XmlDocument.parse(utf8.decode(response.bodyBytes));
+    _XmlData = XmlDocument.parse(utf8.decode(response.bodyBytes));
     final myTransformer = Xml2Json();
-    myTransformer.parse(XmlData.toString());
+    myTransformer.parse(_XmlData.toString());
     var json = jsonDecode(myTransformer.toParker());
 
-    json['response']['body']['items']['item'].forEach((element) => result.add(element));
+    json['response']['body']['items']['item'].forEach((element) => _result.add(element));
 
-    return result;
+    return _result;
   } catch (e) {
     print('url 정보 불러오기 실패');
-    return result;
+    return _result;
   }
 }
 
 /// 멀티마커 호출
 addMultiMarker(data){
-  var result = '';
+  var _result = '';
 
   for(int i = 0; i < data.length; i++) {
-    result += 'addMarker(new kakao.maps.LatLng(${data[i]['YPos']}, ${data[i]['XPos']}));';
+    _result += 'addMarker(new kakao.maps.LatLng(${data[i]['YPos']}, ${data[i]['XPos']}));';
   }
 
-  return result;
+  return _result;
 }
 
 /// KakaoMap에 보낼 데이터
 getHospitalMarker(String latitude, String longitude) async {
-  var hospitalData = await getHospital(latitude, longitude);
-  var result = {
-   'markers' : await addMultiMarker(hospitalData),
-   'resultList' : hospitalData
+  var _hospitalData = await getHospital(latitude, longitude);
+  var _result = {
+   'markers' : await addMultiMarker(_hospitalData),
+   'resultList' : _hospitalData
   };
-  return result;
+  return _result;
 }

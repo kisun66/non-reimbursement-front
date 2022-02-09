@@ -11,10 +11,8 @@ class FindAddress extends StatefulWidget {
 }
 
 class _findAdressState extends State<FindAddress> {
-  String postCode = '-';
-  String address = '-';
-  String kakaoLatitude = '-';
-  String kakaoLongitude = '-';
+  String _kakaoLatitude = '-';
+  String _kakaoLongitude = '-';
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +31,13 @@ class _findAdressState extends State<FindAddress> {
             )));
             if(kPostal.postCode.isNotEmpty){
               try{
-                kakaoLatitude = kPostal.kakaoLatitude.toString();
-                kakaoLongitude = kPostal.kakaoLongitude.toString();
+                _kakaoLatitude = kPostal.kakaoLatitude.toString();
+                _kakaoLongitude = kPostal.kakaoLongitude.toString();
 
                 await Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (c, a1, a2) => kakaoMap.KakaoMap(kakaoLatitude : kakaoLatitude, kakaoLongitude : kakaoLongitude),
+                      pageBuilder: (c, a1, a2) => kakaoMap.KakaoMap(kakaoLatitude : _kakaoLatitude, kakaoLongitude : _kakaoLongitude),
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         const begin = Offset(0.0, 1.0);
                         const end = Offset.zero;

@@ -42,14 +42,14 @@ class _FindMyGpsState extends State<FindMyGps> {
                       }
                   ),
                   transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    const begin = Offset(0.0, 1.0);
-                    const end = Offset.zero;
-                    const curve = Curves.ease;
+                    const _begin = Offset(0.0, 1.0);
+                    const _end = Offset.zero;
+                    const _curve = Curves.ease;
 
-                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                    var _tween = Tween(begin: _begin, end: _end).chain(CurveTween(curve: _curve));
 
                     return SlideTransition(
-                      position: animation.drive(tween),
+                      position: animation.drive(_tween),
                       child: child,
                     );
                   },

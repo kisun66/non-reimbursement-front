@@ -1,6 +1,6 @@
 getSidoCode(String addr){
-  final splitted = addr.split(' ');
-  switch (splitted[0]) {
+  final _splitted = addr.split(' ');
+  switch (_splitted[0]) {
     case '서울특별시':
       return '11';
     case '부산광역시':
