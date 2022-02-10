@@ -115,9 +115,9 @@ class _KakaoMapState extends State<KakaoMap> {
                             ),
                             title: InkWell(
                               onTap: (){
-                                var lat = snapshot.data['resultList'][index]['YPos'];
-                                var lng = snapshot.data['resultList'][index]['XPos'];
-                                _mapController.evaluateJavascript('panTo(${lat}, ${lng})');
+                                var _lat = snapshot.data['resultList'][index]['YPos'];
+                                var _lng = snapshot.data['resultList'][index]['XPos'];
+                                _mapController.evaluateJavascript('panTo(${_lat}, ${_lng})');
                               },
                               child: Text(snapshot.data['resultList'][index]['yadmNm']),
                             )
