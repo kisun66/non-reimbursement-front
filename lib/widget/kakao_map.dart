@@ -89,10 +89,6 @@ class _KakaoMapState extends State<KakaoMap> {
                             trailing: TextButton(
                               child: Text('상세보기', style: TextStyle(color: Colors.green, fontSize: 15)),
                               onPressed: (){
-                                print(snapshot.data['resultList'][index]);
-                                var sidoCd = '${commonUtil.getSidoCode(snapshot.data['resultList'][index]['addr'])}0000';
-                                var yadmNm = snapshot.data['resultList'][index]['yadmNm'];
-                                // getHospitalDetail(sidoCd, yadmNm);
                                 Navigator.push(
                                   context,
                                   PageRouteBuilder(
